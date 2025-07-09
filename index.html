@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeKart - Home</title>
+    <link rel="stylesheet" href="/E-commerce site/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body >
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Shoe<span>Zam</span></h1>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="#" id="products-link">Products</a></li>
+                    <li><a href="#" id="login-link">Login</a></li>
+                    <li><a href="#" id="cart-link"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars">.</i>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay">
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times">.</i>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" id="mobile-products-link">Products</a></li>
+            <li><a href="#" id="mobile-login-link">Login</a></li>
+            <li><a href="#" id="mobile-cart-link"><i class="fas fa-shopping-cart"></i> Cart (<span class="mobile-cart-count">0</span>)</a></li>
+            <li>
+                <div id="theme-toggle" class="mobile-theme-toggle">
+                    <span>Dark Mode</span>
+                    <label class="theme-switch" for="mobile-theme-toggle">
+                        <input type="checkbox" id="mobile-theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Step Into Style</h2>
+                <p>Discover the latest trends in footwear</p>
+                <a href="#" class="btn" id="shop-now">Shop Now</a>
+            </div>
+        </section>
+
+        <section class="featured-categories">
+            <h2>Available</h2>
+            <div class="categories">
+                <div class="category">
+                    <img src="/images/jayson-hinrichsen-qLs4WYXqLNY-unsplash.jpg" alt="Sneakers">
+                    <h3>Sneakers</h3>
+                </div>
+                <div class="category">
+                    <img src="/images/allyson-johnson-lY3d_sIzBXg-unsplash.jpg" alt="Formal Shoes">
+                    <h3>Formal</h3>
+                </div>
+                <div class="category">
+                    <img src="/images/usama-akram-kP6knT7tjn4-unsplash.jpg" alt="Sports Shoes">
+                    <h3>Sports</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>ShoeZam</h3>
+                <p>Your one-stop shop for premium footwear</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/E-commerce site/scripts/index.js"></script>
+    <script src="/E-commerce site/scripts/auth.js"></script>
+    
+</body>
+</html>

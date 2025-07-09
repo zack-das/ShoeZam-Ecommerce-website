@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeKart-SignUp</title>
+    <link rel="stylesheet" href="/E-commerce site/styles/auth.css">
+    <link rel="stylesheet" href="/E-commerce site/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1>Shoe<span>Zam</span></h1>
+            <p>SignUp to start shopping</p>
+        </div>
+
+        <form id="signupform">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmpassword">Confirm Password</label>
+                <input type="password" id="confirmpassword" required>
+            </div>
+             <div><p id="errorMessage">Passwords do not match</p></div>
+            <div id="signUp" ><button id="signupBtn" type="submit">Signup</button></div>
+            <div id="error-message" class="error-message"></div>
+        </form>
+    </div>
+   <!-- Right before closing </body> tag -->
+<div id="customAlert" class="alert-modal" >
+  <div class="alert-content">
+    <p id="alertMessage">Default alert message</p>
+    <button id="alertClose">OK</button>
+  </div>
+</div>
+
+    <script src="/E-commerce site/scripts/signup.js"></script>
+</body>
+</html>

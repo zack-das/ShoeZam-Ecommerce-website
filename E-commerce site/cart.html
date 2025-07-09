@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeKart - Cart</title>
+    <link rel="stylesheet" href="/E-commerce site/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/ANURATI Free Font/Anurati-Regular.otf">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Shoe<span>Zam</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/E-commerce site/products.html">Products</a></li>
+                    <li><a href="#" id="logout-link">Logout</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="cart-container">
+        <h2>Your Shopping Cart</h2>
+        <div class="cart-items">
+            <!-- Cart items will be loaded dynamically -->
+        </div>
+        <div class="cart-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-details">
+    <p>Subtotal: <span id="subtotal">KSh 0.00</span></p>
+    <p>Shipping: <span id="shipping">KSh 350.00</span></p>
+    <p class="total">Total: <span id="total">KSh 350.00</span></p>
+</div>
+            <button class="btn checkout-btn">Proceed to Checkout</button>
+        </div>
+    </main>
+
+    <script src="/E-commerce site/scripts/cart.js"></script>
+    <script src="/E-commerce site/scripts/auth.js"></script>
+</body>
+</html>

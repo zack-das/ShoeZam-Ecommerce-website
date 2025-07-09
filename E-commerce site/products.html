@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeKart - Products</title>
+    <link rel="stylesheet" href="/E-commerce site/styles/products.css">
+    <link rel="stylesheet" href="/E-commerce site/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/ANURATI Free Font/Anurati-Regular.otf">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Shoe<span>Zam</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="#" id="logout-link">Logout</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="products-header">
+            <h2>Our Shoe Collection</h2>
+            <div class="search-filter">
+                <input type="text" placeholder="Search shoes...">
+                <select>
+                    <option>Filter by</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Popularity</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="products-grid">
+            <!-- Products will be loaded dynamically -->
+        </section>
+    </main>
+
+    <script src="/E-commerce site/scripts/products.js"></script>
+    <script src="/E-commerce site/scripts/auth.js"></script>
+</body>
+</html>
