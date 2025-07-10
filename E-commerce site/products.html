@@ -15,16 +15,52 @@
             <div class="logo">
                 <h1>Shoe<span>Zam</span></h1>
             </div>
-            <nav>
+            <nav id="desktopNav">
                 <ul>
                     <li><a href="/index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
                     <li><a href="#" id="logout-link">Logout</a></li>
                     <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
+                    <li>
+                <div id="desktopTheme" id="theme-toggle" class="mobile-theme-toggle">
+                    <label class="themeswitch" for="mobile-theme-toggle">
+                        <input type="checkbox" id="mobile-theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </li>
                 </ul>
+                 
             </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars">.</i>
+            </div>
         </div>
     </header>
+
+    <div class="mobile-menu-overlay">
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times">.</i>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" id="mobile-products-link">Products</a></li>
+            <li><a href="#" id="mobile-login-link">Login</a></li>
+            <li><a href="#" id="mobile-cart-link"><i class="fas fa-shopping-cart"></i> Cart (<span class="mobile-cart-count">0</span>)</a></li>
+            <li>
+                <div id="theme-toggle" class="mobile-theme-toggle">
+                    <span>Dark Mode</span>
+                    <label class="theme-switch" for="mobile-theme-toggle">
+                        <input type="checkbox" id="mobile-theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
     <main>
         <section class="products-header">

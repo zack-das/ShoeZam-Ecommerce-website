@@ -19,7 +19,7 @@
 
         document.getElementById('login-link').addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = 'login.html';
+            window.location.href = './E-commerce site/login.html';
         });
 
         document.getElementById('cart-link').addEventListener('click', function(e) {
