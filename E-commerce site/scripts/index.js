@@ -2,24 +2,24 @@
         document.getElementById('products-link').addEventListener('click', function(e) {
             e.preventDefault();
             if (!localStorage.getItem('isLoggedIn')) {
-                window.location.href = '/E-commerce site/login.html';
+                window.location.href = 'login.html';
             } else {
-                window.location.href = '/E-commerce site/products.html';
+                window.location.href = 'products.html';
             }
         });
 
         document.getElementById('shop-now').addEventListener('click', function(e) {
             e.preventDefault();
             if (!localStorage.getItem('isLoggedIn')) {
-                window.location.href = './E-commerce site/login.html';
+                window.location.href = 'login.html';
             } else {
-                window.location.href = './E-commerce site/products.html';
+                window.location.href = 'products.html';
             }
         });
 
         document.getElementById('login-link').addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = './E-commerce site/login.html';
+            window.location.href = 'login.html';
         });
 
         document.getElementById('cart-link').addEventListener('click', function(e) {
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
         document.querySelector('.mobile-cart-count').textContent = totalItems;
     }
-    
+     
     updateMobileCartCount();
 });
 
@@ -168,3 +168,6 @@ function updateNav() {
         logoutLinks.forEach(link => link.style.display = 'none');
     }
 }
+
+
+// Call updateNav on page load
