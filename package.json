@@ -1,0 +1,9 @@
+{
+  "name": "shoozam-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Static site ready'",
+    "deploy": "echo 'Deploy complete'"
+  }
+}

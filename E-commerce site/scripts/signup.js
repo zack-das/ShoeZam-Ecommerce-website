@@ -42,7 +42,7 @@ signupForm.addEventListener("submit", async function(event) {
     }
 
     try {
-        const response = await fetch("http://localhost:5000/signup", {  // Changed to 5000
+        const response = await fetch("https://shoezamserver.onrender.com/signup", {  // Changed to 5000
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
