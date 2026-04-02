@@ -1,3 +1,5 @@
+// auth.js - Fixed to use your backend database
+
 // Check if user is logged in on protected pages
 document.addEventListener('DOMContentLoaded', function() {
     const protectedPages = ['products.html', 'cart.html'];
@@ -22,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Login form submission
+// Login form submission - FIXED to use your backend
 const loginForm = document.getElementById('login-form');
 if (loginForm) {
-    loginForm.addEventListener('submit', function(e) {
+    loginForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const email = document.getElementById('email').value;
@@ -37,20 +39,42 @@ if (loginForm) {
             return;
         }
         
-        // In a real app, you would send this to your server
-        //  check for  email/password
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userEmail', email);
-        
-        const username = email.split('@')[0]; // Using email prefix as username for demo
-        
-        // Show welcome alert
-        alert(`Welcome back, ${username}!`);
-        
-        // Redirect to products page after 1 second
-        setTimeout(() => {
-            window.location.href = 'products.html';
-        }, 1000);
+        try {
+            // Send request to your backend
+            const response = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.success) {
+                // Only set localStorage if backend validates the user
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                
+                const username = email.split('@')[0];
+                alert(`Welcome back, ${username}!`);
+                
+                // Redirect to products page
+                window.location.href = 'products.html';
+            } else {
+                // Show error message from backend
+                showError(data.message || 'Invalid email or password');
+                // Clear any existing login state
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            showError("Network error. Please check if server is running on port 5000");
+        }
     });
 }
 
@@ -58,7 +82,7 @@ if (loginForm) {
 function logout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userEmail');
-    window.location.href = '/index.html';
+    window.location.href = 'index.html';
 }
 
 // Show error message
@@ -66,9 +90,27 @@ function showError(message) {
     const errorElement = document.getElementById('error-message');
     if (errorElement) {
         errorElement.textContent = message;
+        errorElement.style.color = 'red';
         setTimeout(() => {
             errorElement.textContent = '';
         }, 3000);
+    } else {
+        // Create error element if it doesn't exist
+        const form = document.getElementById('login-form');
+        if (form) {
+            let error = document.getElementById('error-message');
+            if (!error) {
+                error = document.createElement('div');
+                error.id = 'error-message';
+                error.style.color = 'red';
+                error.style.marginTop = '10px';
+                form.appendChild(error);
+            }
+            error.textContent = message;
+            setTimeout(() => {
+                error.textContent = '';
+            }, 3000);
+        }
     }
 }
 
@@ -87,23 +129,23 @@ function updateNav() {
     }
 }
 
-
-
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
     const mobileMenuClose = document.querySelector('.mobile-menu-close');
     
-    // Toggle mobile menu
-    mobileMenuBtn.addEventListener('click', function() {
-        mobileMenuOverlay.style.display = 'flex';
-    });
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenuOverlay.style.display = 'flex';
+        });
+    }
     
-    // Close mobile menu
-    mobileMenuClose.addEventListener('click', function() {
-        mobileMenuOverlay.style.display = 'none';
-    });
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', function() {
+            mobileMenuOverlay.style.display = 'none';
+        });
+    }
     
     // Close mobile menu when clicking on links
     document.querySelectorAll('.mobile-menu-content a').forEach(link => {
@@ -120,62 +162,74 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
         document.body.classList.add('dark-mode');
-        themeToggle.checked = true;
-        mobileThemeToggle.checked = true;
+        if (themeToggle) themeToggle.checked = true;
+        if (mobileThemeToggle) mobileThemeToggle.checked = true;
     }
     
     // Theme toggle event listeners
-    themeToggle.addEventListener('change', toggleTheme);
-    mobileThemeToggle.addEventListener('change', toggleTheme);
+    if (themeToggle) {
+        themeToggle.addEventListener('change', toggleTheme);
+    }
+    if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('change', toggleTheme);
+    }
     
     function toggleTheme(e) {
         if (e.target.checked) {
             document.body.classList.add('dark-mode');
             localStorage.setItem('theme', 'dark');
-            // Sync both toggles
-            themeToggle.checked = true;
-            mobileThemeToggle.checked = true;
+            if (themeToggle) themeToggle.checked = true;
+            if (mobileThemeToggle) mobileThemeToggle.checked = true;
         } else {
             document.body.classList.remove('dark-mode');
             localStorage.setItem('theme', 'light');
-            // Sync both toggles
-            themeToggle.checked = false;
-            mobileThemeToggle.checked = false;
+            if (themeToggle) themeToggle.checked = false;
+            if (mobileThemeToggle) mobileThemeToggle.checked = false;
         }
     }
     
     // Mobile menu links functionality
-    document.getElementById('mobile-products-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        if (!localStorage.getItem('isLoggedIn')) {
-            window.location.href = 'login.html';
-        } else {
-            window.location.href = 'products.html';
-        }
-    });
+    const mobileProductsLink = document.getElementById('mobile-products-link');
+    if (mobileProductsLink) {
+        mobileProductsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!localStorage.getItem('isLoggedIn')) {
+                window.location.href = 'login.html';
+            } else {
+                window.location.href = 'products.html';
+            }
+        });
+    }
     
-    document.getElementById('mobile-login-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = 'login.html';
-    });
-    
-    document.getElementById('mobile-cart-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        if (!localStorage.getItem('isLoggedIn')) {
+    const mobileLoginLink = document.getElementById('mobile-login-link');
+    if (mobileLoginLink) {
+        mobileLoginLink.addEventListener('click', function(e) {
+            e.preventDefault();
             window.location.href = 'login.html';
-        } else {
-            window.location.href = 'cart.html';
-        }
-    });
+        });
+    }
+    
+    const mobileCartLink = document.getElementById('mobile-cart-link');
+    if (mobileCartLink) {
+        mobileCartLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!localStorage.getItem('isLoggedIn')) {
+                window.location.href = 'login.html';
+            } else {
+                window.location.href = 'cart.html';
+            }
+        });
+    }
     
     // Update cart count in mobile menu
     function updateMobileCartCount() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-        document.querySelector('.mobile-cart-count').textContent = totalItems;
+        const cartCount = document.querySelector('.mobile-cart-count');
+        if (cartCount) {
+            cartCount.textContent = totalItems;
+        }
     }
     
     updateMobileCartCount();
 });
-
-
